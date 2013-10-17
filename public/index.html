@@ -1,28 +1,122 @@
+<!DOCTYPE html>
 
 <html>
-  <head>
-    <title>RAGE Hit Server</title>
+<head>
+    <title>RAGEagain Server</title>
+    <link href=
+    "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"
+    rel="stylesheet">
+</head>
 
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-  </head>
-
-  <body style="">
+<body style="">
     <div class="container">
-      <div class="hero-unit">
-        <h1>RAGE Service</h1>
-        <p><em>v0.0.1</em></p>
-      </div>
+        <div class="hero-unit">
+            <h1>RAGEagain Server</h1>
+
+            <p><em>v0.1.0</em></p>
+        </div>
     </div>
+
     <div class="container">
-      <div class="content" style="margin-left:50px;">
-        <h2>Introduction</h2>
+        <div class="content" style="margin-left:50px;">
+            <article class="markdown-body entry-content">
+                <h1><a class="anchor" href="#rageagain-server" id=
+                "rageagain-server" name="rageagain-server"><span class=
+                "octicon octicon-link"></span></a>RAGEagain Server</h1>
 
-        <h2>Structure</h2>
+                <h1><a class="anchor" href="#introduction" id="introduction"
+                name="introduction"><span class=
+                "octicon octicon-link"></span></a>Introduction</h1>
 
-        <h2>Resources</h2>
+                <p>A RESTful API for the RAGEagain dataset by <a href=
+                "http://www.pjgalbraith.com">Patrick Galbraith</a>.</p>
 
-        <p><em>Created and Maintained by <a href="http://twitter.com/tomdionysus">@tomdionysus</a></em></p>
-      </div>
+                <h1><a class="anchor" href="#entity-resources" id=
+                "entity-resources" name="entity-resources"><span class=
+                "octicon octicon-link"></span></a>Entity Resources</h1>
+
+                <p>All Resources support GET,PUT,POST,DELETE</p>
+
+                <ul>
+                    <li>/tracks</li>
+
+                    <li>/artists</li>
+
+                    <li>/playlists</li>
+
+                    <li>/labels</li>
+                </ul>
+
+                <p>RAGEagain is based on the <code>crud-service</code> gem, and
+                supports all query/relational URL params as detailed <a href=
+                "https://github.com/tomcully/crud-service">here</a></p>
+
+                <h1><a class="anchor" href="#authorization" id="authorization"
+                name="authorization"><span class=
+                "octicon octicon-link"></span></a>Authorization</h1>
+
+                <p>POST,PUT and DELETE require HMAC authorization, similar to
+                the Amazon AWS api.</p>
+
+                <p>You should supply an Authorization header:</p>
+                <pre>
+<code>Authorization: HMAC user:hmac_hash
+</code>
+</pre>
+
+                <p>The HMAC key is set in the HMAC_SHARED_SECRET environment
+                variable. For client requests, the hash is the base64 encoded
+                HMAC-SHA1 of
+                "#{verb}:#{path}:#{MD5(body)}:#{UTC_date(YYYYMMDD)}" with the
+                shared secret as the key, e.g.:</p>
+                <pre>
+<code>HMAC_SHARED_SECRET:     fOiFYoR22odgbjKsDHcQdkfiLErjGa8r
+
+Verb:                   POST
+Path:                   /artists
+Body:                   {"name":"Danger Will Robinson"}
+MD5 Body:               6c623b354d22cb960c7904169317f6da
+UTC Date:               20131009
+
+To Hash:                POST:/artists:6c623b354d22cb960c7904169317f6da:20131009
+Base64 HMAC-SHA1:       Z2zNW8Ew9hYMKl02WkYQ+hZaL+o=
+
+Header:                 Authorization: HMAC public:Z2zNW8Ew9hYMKl02WkYQ+hZaL+o=
+</code>
+</pre>
+
+                <p>The <em>user</em> parameter is currently ignored.</p>
+
+                <h1><a class="anchor" href="#env-config" id="env-config" name=
+                "env-config"><span class="octicon octicon-link"></span></a>ENV
+                config</h1>
+
+                <ul>
+                    <li>CLEARDB_DATABASE_URL -
+                    mysql2://<em>username:password</em>@<em>host:port/dbname</em></li>
+
+                    <li>MEMCACHIER_SERVERS - <em>memcachier hosts</em></li>
+
+                    <li>MEMCACHIER_USERNAME - <em>memcachier username</em></li>
+
+                    <li>MEMCACHIER_PASSWORD - <em>memcachier password</em></li>
+                </ul>
+
+                <p>Memcache is optional and will only be used if
+                configured.</p>
+
+                <h1><a class="anchor" href="#credits" id="credits" name=
+                "credits"><span class=
+                "octicon octicon-link"></span></a>Credits</h1>
+
+                <p>Created by <a href=
+                "http://www.twitter.com/tomdionysus">@tomdionysus</a></p>
+
+                <p>Based on data from <a href=
+                "http://www.pjgalbraith.com/2012/08/rageagain">RAGEagain</a> by
+                <a href="http://www.pjgalbraith.com">Patrick Galbraith</a></p>
+            </article>
+        </div>
     </div>
-  </body>
+</body>
 </html>

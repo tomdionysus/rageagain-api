@@ -1,1 +1,1 @@
-mysqldump rage -u root --extended-insert=false --default-character-set=utf8 > data/install.sql
+mysqldump rage -u root --default-character-set=utf8 > data/install.sql

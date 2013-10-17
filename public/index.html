@@ -49,7 +49,11 @@
 
                 <p>RAGEagain is based on the <code>crud-service</code> gem, and
                 supports all query/relational URL params as detailed <a href=
-                "https://github.com/tomcully/crud-service">here</a></p>
+                "https://github.com/tomcully/crud-service">here</a>.</p>
+
+                <p>Examples:</p>
+                <ul>
+                  <li>All Tracks called &quot;
 
                 <h1><a class="anchor" href="#authorization" id="authorization"
                 name="authorization"><span class=
@@ -60,8 +64,7 @@
 
                 <p>You should supply an Authorization header:</p>
                 <pre>
-<code>Authorization: HMAC user:hmac_hash
-</code>
+<code>Authorization: HMAC user:hmac_hash</code>
 </pre>
 
                 <p>The HMAC key is set in the HMAC_SHARED_SECRET environment
@@ -81,8 +84,7 @@ UTC Date:               20131009
 To Hash:                POST:/artists:6c623b354d22cb960c7904169317f6da:20131009
 Base64 HMAC-SHA1:       Z2zNW8Ew9hYMKl02WkYQ+hZaL+o=
 
-Header:                 Authorization: HMAC public:Z2zNW8Ew9hYMKl02WkYQ+hZaL+o=
-</code>
+Header:                 Authorization: HMAC public:Z2zNW8Ew9hYMKl02WkYQ+hZaL+o=</code>
 </pre>
 
                 <p>The <em>user</em> parameter is currently ignored.</p>

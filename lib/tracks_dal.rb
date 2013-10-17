@@ -15,7 +15,7 @@ module DAL
       @relations = {
         "artist" => { 
           :type           => :has_one, 
-          :table          => 'tracks',
+          :table          => 'artists',
           :table_key      => 'id', 
           :this_key       => 'artist_id',
           :table_fields   => 'id,name'

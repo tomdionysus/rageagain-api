@@ -47,6 +47,7 @@ The *user* parameter is currently ignored.
 * MEMCACHIER_SERVERS - *memcachier hosts*
 * MEMCACHIER_USERNAME - *memcachier username*
 * MEMCACHIER_PASSWORD - *memcachier password*
+* HMAC_SHARED_SECRET - *HMAC shared secret for POST,PUT,DELETE*
 
 Memcache is optional and will only be used if configured.
 

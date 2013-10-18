@@ -14,7 +14,7 @@ module DAL
         "tracks" => { 
           :type           => :has_many, 
           :table          => 'tracks',
-          :table_key      => 'artists_id', 
+          :table_key      => 'artist_id', 
           :this_key       => 'id',
           :table_fields   => 'id,name'
         },

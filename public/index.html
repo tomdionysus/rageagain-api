@@ -20,15 +20,11 @@
     <div class="container">
         <div class="content" style="margin-left:50px;">
             <article class="markdown-body entry-content">
-                <h1><a class="anchor" href="#rageagain-server" id=
-                "rageagain-server" name="rageagain-server"><span class=
-                "octicon octicon-link"></span></a>RAGEagain Server</h1>
-
                 <h1><a class="anchor" href="#introduction" id="introduction"
                 name="introduction"><span class=
                 "octicon octicon-link"></span></a>Introduction</h1>
 
-                <p>A RESTful API for the RAGEagain dataset by <a href=
+                <p>A RESTful JSON API for the RAGEagain dataset by <a href=
                 "http://www.pjgalbraith.com">Patrick Galbraith</a>.</p>
 
                 <h1><a class="anchor" href="#entity-resources" id=
@@ -38,13 +34,22 @@
                 <p>All Resources support GET,PUT,POST,DELETE</p>
 
                 <ul>
-                    <li>/tracks</li>
+                    <li>/tracks<br>
+                        Fields: id, name, label_id, artist_id<br>
+                        Relations: artist, label<br>
+                    </li>
 
-                    <li>/artists</li>
+                    <li>/artists<br>
+                        Fields: id, name<br>
+                        Relations: tracks, labels<br></li>
 
-                    <li>/playlists</li>
+                    <li>/playlists<br>
+                        Fields: id, title, special, timeslot, url, year, month, day<br>
+                        Relations: tracks<br></li>
 
-                    <li>/labels</li>
+                    <li>/labels<br>
+                        Fields: id, name<br>
+                        Relations: tracks, artists<br></li>
                 </ul>
 
                 <p>RAGEagain is based on the <code>crud-service</code> gem, and
@@ -53,7 +58,16 @@
 
                 <p>Examples:</p>
                 <ul>
-                  <li>All Tracks called &quot;
+                    <li>All Tracks called <em>&quot;One&quot;</em>: <a href="/tracks?name=One">/tracks?name=One</a></li>
+                    <li>All Tracks called <em>&quot;One&quot;</em>, include Artist: <a href="/tracks?name=One&include=artist">/tracks?name=One</a></li>
+                    <li>All Artists called <em>&quot;U2&quot;</em>: <a href="/artists?name=U2">/artists?name=U2</a></li>
+                    <li>All Artists called <em>&quot;U2&quot;</em>, include tracks: <a href="/artists?name=U2&include=tracks">/artists?name=U2&amp;include=tracks</a></li>
+                    <li>All Playlists in Dec 2011 <a href="/playlists?year=2011&month=12">/playlists?year=2011&amp;month=12</a></li>
+                    <li>All Playlists in Dec 2011, include tracks <a href="/playlists?year=2011&month=12&include=tracks">/playlists?year=2011&amp;month=12&amp;include=tracks</a></li>
+                    <li>All Labels called <em>&quot;EMI&quot;</em>: <a href="/labels?name=EMI">/labels?name=EMI</a></li>
+                    <li>All Labels called <em>&quot;EMI&quot;</em>, include artists: <a href="/labels?name=EMI&include=artists">/labels?name=EMI&amp;include=artists</a></li>
+
+                </ul>
 
                 <h1><a class="anchor" href="#authorization" id="authorization"
                 name="authorization"><span class=
@@ -87,25 +101,7 @@ Base64 HMAC-SHA1:       Z2zNW8Ew9hYMKl02WkYQ+hZaL+o=
 Header:                 Authorization: HMAC public:Z2zNW8Ew9hYMKl02WkYQ+hZaL+o=</code>
 </pre>
 
-                <p>The <em>user</em> parameter is currently ignored.</p>
-
-                <h1><a class="anchor" href="#env-config" id="env-config" name=
-                "env-config"><span class="octicon octicon-link"></span></a>ENV
-                config</h1>
-
-                <ul>
-                    <li>CLEARDB_DATABASE_URL -
-                    mysql2://<em>username:password</em>@<em>host:port/dbname</em></li>
-
-                    <li>MEMCACHIER_SERVERS - <em>memcachier hosts</em></li>
-
-                    <li>MEMCACHIER_USERNAME - <em>memcachier username</em></li>
-
-                    <li>MEMCACHIER_PASSWORD - <em>memcachier password</em></li>
-                </ul>
-
-                <p>Memcache is optional and will only be used if
-                configured.</p>
+                <p>Please note the HMAC secret above is for example only.</p>
 
                 <h1><a class="anchor" href="#credits" id="credits" name=
                 "credits"><span class=
